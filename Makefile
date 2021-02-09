@@ -23,11 +23,11 @@ WORKSPACE = $(shell echo $$PWD)
 ###
 
 usb-accel-install:
-	ansible-playbook playbooks/install-usb-accel.yml --extra-vars "@.env/example-vars.json" -i .env/example-inventory.ini
+	ansible-playbook playbooks/install-usb-accel.yml --extra-vars "@.env/my-vars.json" -i .env/my-inventory.ini
 
 usb-accel-demo:
 	echo "Running Edge TPU Demo from https://coral.withgoogle.com/docs/accelerator/get-started/#run-a-model-on-the-edge-tpu"
-	ansible-playbook playbooks/demo-usb-accel.yml --extra-vars "@.env/example-vars.json" -i .env/example-inventory.ini
+	ansible-playbook playbooks/demo-usb-accel.yml --extra-vars "@.env/my-vars.json" -i .env/my-inventory.ini
 tflite:
 	python -m "models.mobilenet_v2.py"
 
@@ -35,13 +35,13 @@ camera-test:
 	python -m "detector.camera_test"
 
 cp-tflite-lib:
-	ansible-playbook playbooks/rpi-tensorflow-lite.yml --extra-vars "@.env/example-vars.json" -i .env/example-inventory.ini
+	ansible-playbook playbooks/rpi-tensorflow-lite.yml --extra-vars "@.env/my-vars.json" -i .env/my-inventory.ini
 	
 tflite-lib:
 	TENSORFLOW_VERSION=${TENSORFLOW_VERSION} ./tools/build-tflite-lib
 
 rpi-install:
-	ansible-playbook playbooks/bootstrap-rpi.yml --extra-vars "@.env/example-vars.json" -i .env/example-inventory.ini
+	ansible-playbook playbooks/bootstrap-rpi.yml --extra-vars "@.env/my-vars.json" -i .env/my-inventory.ini
 
 ###
 # Maintainer targets
